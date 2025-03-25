@@ -1,11 +1,13 @@
 import 'package:flutter/material.dart';
+import 'package:movilizat/core/constants/app_colors.dart';
 
 import 'constants.dart';
 
 class AppTheme {
   static ThemeData lightTheme(BuildContext context) {
     return ThemeData(
-      scaffoldBackgroundColor: Colors.white,
+      scaffoldBackgroundColor: const Color(0xFFF0F0F0),
+      indicatorColor: Colors.black,
       fontFamily: "Muli",
       appBarTheme: const AppBarTheme(
           color: Colors.white,
@@ -36,6 +38,9 @@ class AppTheme {
           ),
         ),
       ),
+      navigationBarTheme: const NavigationBarThemeData(
+          backgroundColor: AppColors.navigationBarLight,
+          indicatorColor: AppColors.navigationOptionLight),
     );
   }
 }

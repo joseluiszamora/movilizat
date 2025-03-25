@@ -2,7 +2,7 @@ import 'package:go_router/go_router.dart';
 import 'package:movilizat/core/blocs/auth/auth_bloc.dart';
 import 'package:movilizat/core/routes/app_routes.dart';
 import 'package:movilizat/views/auth/login_screen.dart';
-import 'package:movilizat/views/home/home_screen.dart';
+import 'package:movilizat/views/navigation/navigation_bar_page.dart';
 import 'package:movilizat/views/splash/splash_page.dart';
 
 GoRouter appRouter(AuthState authState) => GoRouter(
@@ -30,7 +30,7 @@ List<RouteBase> publicRoutes() => [
           builder: (context, state) => const SplashPage()),
       GoRoute(
           path: AppRoutes.navigation,
-          builder: (context, state) => const HomeScreen()),
+          builder: (context, state) => const NavigationBarPage()),
       GoRoute(
           path: AppRoutes.authLogin,
           builder: (context, state) => const LoginScreen()),
