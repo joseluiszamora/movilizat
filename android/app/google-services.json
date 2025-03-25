@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "23595612571",
+    "project_id": "movilizate-app-66676",
+    "storage_bucket": "movilizate-app-66676.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:23595612571:android:aac908228d73e256b0493e",
+        "android_client_info": {
+          "package_name": "bo.monval.movilizat"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "23595612571-uj3lc2o5vbl9o27go5ph5nsuqja2cup6.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "bo.monval.movilizat",
+            "certificate_hash": "b44b1cc7e6767a236fe1acf9870d999ee8d97f16"
+          }
+        },
+        {
+          "client_id": "23595612571-3i7qq4qvmk89o6l987vft2kv4g6pjovv.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCOx8EZFKyW-GagFOtTvyyDoTEn8B8zwS4"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "23595612571-3i7qq4qvmk89o6l987vft2kv4g6pjovv.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
