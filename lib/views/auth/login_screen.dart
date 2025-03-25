@@ -13,12 +13,13 @@ class LoginScreen extends StatelessWidget {
       body: BlocConsumer<AuthBloc, AuthState>(
         listener: (context, state) {
           if (state is AuthAuthenticated) {
-            // Navegar a la pantalla principal
             Navigator.of(context).pushReplacement(
-                MaterialPageRoute(builder: (_) => const HomeScreen()));
+              MaterialPageRoute(builder: (_) => const HomeScreen()),
+            );
           } else if (state is AuthError) {
-            ScaffoldMessenger.of(context)
-                .showSnackBar(SnackBar(content: Text('Error: ${state.error}')));
+            ScaffoldMessenger.of(context).showSnackBar(
+              SnackBar(content: Text(state.message)),
+            );
           }
         },
         builder: (context, state) {
