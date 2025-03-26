@@ -19,8 +19,8 @@ class FuelStationPage extends StatelessWidget {
       id: 2,
       nombre: "Estación de Servicio Laredo S.R.L.",
       direccion: "Avenida 6 de Marzo Nº 1962 - El Alto, La Paz",
-      latitud: "-16.5112",
-      longitud: "-68.1923",
+      latitud: -16.5112,
+      longitud: -68.1923,
       productos: ["gasolina", "diesel", "gnv"],
       imagen:
           "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTVriUJlkvPVgX8lqYokR0lOn73Ijhx7DOmVA&s",
