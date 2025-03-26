@@ -6,6 +6,7 @@ import 'package:movilizat/core/routes/app_routes.dart';
 import 'package:movilizat/views/fuel/components/image_station.dart';
 import 'package:movilizat/views/fuel/components/info_station.dart';
 import 'package:movilizat/views/fuel/components/stats_station.dart';
+import 'package:url_launcher/url_launcher_string.dart';
 
 class FuelStationPage extends StatelessWidget {
   const FuelStationPage({super.key});
@@ -19,7 +20,8 @@ class FuelStationPage extends StatelessWidget {
       latitud: "-16.5112",
       longitud: "-68.1923",
       productos: ["gasolina", "diesel", "gnv"],
-      imagen: "https://www.anh.gob.bo/estaciones/laredo.jpg",
+      imagen:
+          "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTVriUJlkvPVgX8lqYokR0lOn73Ijhx7DOmVA&s",
     );
     return Scaffold(
       extendBody: true,
@@ -79,7 +81,7 @@ class FuelStationPage extends StatelessWidget {
       ),
       body: ListView(
         children: [
-          const ImageStation(),
+          const ImageStation(station: station),
           TopRoundedContainer(
             color: Colors.white,
             child: Column(
@@ -105,28 +107,7 @@ class FuelStationPage extends StatelessWidget {
           const SizedBox(height: 50)
         ],
       ),
-      bottomNavigationBar: const MakeActions(),
-      // bottomNavigationBar: TopRoundedContainer(
-      //   color: Colors.white,
-      //   child: SafeArea(
-      //     child: Padding(
-      //       padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 12),
-      //       child: ElevatedButton(
-      //         style: ElevatedButton.styleFrom(
-      //           elevation: 0,
-      //           backgroundColor: const Color(0xFFFF7643),
-      //           foregroundColor: Colors.white,
-      //           minimumSize: const Size(double.infinity, 48),
-      //           shape: const RoundedRectangleBorder(
-      //             borderRadius: BorderRadius.all(Radius.circular(16)),
-      //           ),
-      //         ),
-      //         onPressed: () {},
-      //         child: const Text("Add To Cart"),
-      //       ),
-      //     ),
-      //   ),
-      // ),
+      bottomNavigationBar: const MakeActions(station: station),
     );
   }
 }
@@ -160,9 +141,9 @@ class TopRoundedContainer extends StatelessWidget {
 }
 
 class MakeActions extends StatelessWidget {
-  const MakeActions({
-    super.key,
-  });
+  const MakeActions({super.key, required this.station});
+
+  final FuelStation station;
 
   @override
   Widget build(BuildContext context) {
@@ -208,21 +189,14 @@ class MakeActions extends StatelessWidget {
                     child: const Text("Ver Reportes"),
                   ),
                 ),
-                const SizedBox(width: 20),
+                const SizedBox(width: 10),
                 Expanded(
-                  child: ElevatedButton(
-                    onPressed: () {},
-                    style: ElevatedButton.styleFrom(
-                      elevation: 0,
-                      backgroundColor: const Color(0xFFFF7643),
-                      foregroundColor: Colors.white,
-                      minimumSize: const Size(double.infinity, 48),
-                      shape: const RoundedRectangleBorder(
-                        borderRadius: BorderRadius.all(Radius.circular(16)),
-                      ),
-                    ),
-                    child: const Text("Ver en Mapa"),
-                  ),
+                  child: ElevatedButton.icon(
+                      onPressed: () async {
+                        await openGoogleMaps(context, station);
+                      },
+                      icon: const Icon(Icons.map),
+                      label: const Text('Ver en Mapa')),
                 ),
               ],
             ),
@@ -230,6 +204,17 @@ class MakeActions extends StatelessWidget {
         ),
       ),
     );
+  }
+
+  Future<void> openGoogleMaps(BuildContext context, FuelStation station) async {
+    final googleMapsUrl =
+        'https://www.google.com/maps/search/?api=1&query=${station.latitud},${station.longitud}';
+
+    if (await canLaunchUrlString(googleMapsUrl)) {
+      await launchUrlString(googleMapsUrl);
+    } else {
+      throw 'No se pudo abrir Google Maps';
+    }
   }
 }
 

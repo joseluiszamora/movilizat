@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:movilizat/core/data/models/fuel_station.dart';
+import 'package:movilizat/views/fuel/components/product_station_info.dart';
 
 class InfoStation extends StatelessWidget {
   const InfoStation({
@@ -32,31 +33,12 @@ class InfoStation extends StatelessWidget {
             child: Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                ...station.productos.map((producto) => Row(
-                      children: [
-                        buildSmallDot(context),
-                        Text(producto,
-                            style: Theme.of(context).textTheme.bodyMedium),
-                      ],
-                    )),
+                ...station.productos
+                    .map((producto) => ProductStationInfo(producto: producto)),
               ],
             ),
           ),
         ],
-      ),
-    );
-  }
-
-  Padding buildSmallDot(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 8),
-      child: Container(
-        height: 4,
-        width: 4,
-        decoration: BoxDecoration(
-          color: Theme.of(context).textTheme.bodyLarge!.color!.withOpacity(0.4),
-          shape: BoxShape.circle,
-        ),
       ),
     );
   }

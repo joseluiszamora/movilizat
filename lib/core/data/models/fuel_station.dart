@@ -43,7 +43,8 @@ class FuelStation extends Equatable {
       latitud: "-16.5033",
       longitud: "-68.1625",
       productos: ["gasolina", "diesel", "gnv"],
-      imagen: "https://www.anh.gob.bo/estaciones/satelite_gnv.jpg",
+      imagen:
+          "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTVriUJlkvPVgX8lqYokR0lOn73Ijhx7DOmVA&s",
     ),
     const FuelStation(
       id: 2,

@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:movilizat/core/data/models/fuel_station.dart';
 import 'package:movilizat/core/routes/app_routes.dart';
-import 'package:movilizat/views/fuel/components/product_chip.dart';
+import 'package:movilizat/views/fuel/components/product_station_info.dart';
 import 'package:url_launcher/url_launcher_string.dart';
 
 class FuelPage extends StatelessWidget {
@@ -33,6 +33,16 @@ class FuelPage extends StatelessWidget {
                               fontSize: 18, fontWeight: FontWeight.bold),
                         ),
                         const SizedBox(height: 10),
+                        Center(
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceAround,
+                            children: [
+                              ...station.productos.map((producto) =>
+                                  ProductStationInfo(producto: producto)),
+                            ],
+                          ),
+                        ),
+                        const SizedBox(height: 10),
                         Row(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
@@ -58,28 +68,17 @@ class FuelPage extends StatelessWidget {
                                     style: const TextStyle(fontSize: 14),
                                   ),
                                   const SizedBox(height: 10),
-                                  ElevatedButton.icon(
-                                    onPressed: () async {
-                                      // await openGoogleMaps(context, station);
+                                  ElevatedButton(
+                                    onPressed: () {
                                       context.go(AppRoutes.fuelStationPage);
                                     },
-                                    icon: const Icon(Icons.map),
-                                    label: const Text('Ver en Mapa'),
+                                    child: const Text("Mas Información"),
                                   ),
                                   const SizedBox(height: 10),
                                 ],
                               ),
                             ),
                           ],
-                        ),
-                        Center(
-                          child: Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceAround,
-                            children: [
-                              ...station.productos.map(
-                                  (producto) => ProductChip(product: producto)),
-                            ],
-                          ),
                         ),
                       ],
                     ),
@@ -89,16 +88,5 @@ class FuelPage extends StatelessWidget {
         )
       ],
     );
-  }
-
-  Future<void> openGoogleMaps(BuildContext context, FuelStation station) async {
-    final googleMapsUrl =
-        'https://www.google.com/maps/search/?api=1&query=${station.latitud},${station.longitud}';
-
-    if (await canLaunchUrlString(googleMapsUrl)) {
-      await launchUrlString(googleMapsUrl);
-    } else {
-      throw 'No se pudo abrir Google Maps';
-    }
   }
 }
