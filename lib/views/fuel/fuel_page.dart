@@ -1,6 +1,8 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 import 'package:movilizat/core/data/models/fuel_station.dart';
+import 'package:movilizat/core/routes/app_routes.dart';
 import 'package:movilizat/views/fuel/components/product_chip.dart';
 import 'package:url_launcher/url_launcher_string.dart';
 
@@ -58,7 +60,8 @@ class FuelPage extends StatelessWidget {
                                   const SizedBox(height: 10),
                                   ElevatedButton.icon(
                                     onPressed: () async {
-                                      await openGoogleMaps(context, station);
+                                      // await openGoogleMaps(context, station);
+                                      context.go(AppRoutes.fuelStationPage);
                                     },
                                     icon: const Icon(Icons.map),
                                     label: const Text('Ver en Mapa'),

@@ -7,18 +7,19 @@ import 'package:movilizat/views/navigation/navigation_bar_page.dart';
 import 'package:movilizat/views/splash/splash_page.dart';
 
 GoRouter appRouter(AuthState authState) => GoRouter(
-      initialLocation: AppRoutes.fuelStationPage,
-      // initialLocation: AppRoutes.splash,
+      // initialLocation: AppRoutes.fuelStationPage,
+      initialLocation: AppRoutes.splash,
       routes: publicRoutes(),
       redirect: (context, state) {
-        // // Si el usuario está autenticado, redirigir a navigation
-        // if (authState is AuthAuthenticated) {
-        //   return AppRoutes.navigation;
-        // }
-        // // Si el usuario NO está autenticado, redirigir a login
-        // if (authState is AuthUnauthenticated) {
-        //   return AppRoutes.authLogin;
-        // }
+        // Si el usuario está autenticado, redirigir a navigation
+        if (authState is AuthAuthenticated &&
+            !state.matchedLocation.contains(AppRoutes.fuelStationPage)) {
+          return AppRoutes.navigation;
+        }
+        // Si el usuario NO está autenticado, redirigir a login
+        if (authState is AuthUnauthenticated) {
+          return AppRoutes.authLogin;
+        }
 
         // No hay redirección
         return null;

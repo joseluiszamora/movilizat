@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:go_router/go_router.dart';
 import 'package:movilizat/core/data/models/fuel_station.dart';
+import 'package:movilizat/core/routes/app_routes.dart';
 import 'package:movilizat/views/fuel/components/image_station.dart';
 import 'package:movilizat/views/fuel/components/info_station.dart';
 import 'package:movilizat/views/fuel/components/stats_station.dart';
@@ -30,7 +32,7 @@ class FuelStationPage extends StatelessWidget {
           padding: const EdgeInsets.all(8.0),
           child: ElevatedButton(
             onPressed: () {
-              // Navigator.pop(context);
+              context.go(AppRoutes.navigation);
             },
             style: ElevatedButton.styleFrom(
               shape: const CircleBorder(),
