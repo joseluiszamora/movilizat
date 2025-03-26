@@ -1,6 +1,7 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:movilizat/core/data/models/fuel_station.dart';
+import 'package:movilizat/views/fuel/components/product_chip.dart';
 import 'package:url_launcher/url_launcher_string.dart';
 
 class FuelPage extends StatelessWidget {
@@ -96,35 +97,5 @@ class FuelPage extends StatelessWidget {
     } else {
       throw 'No se pudo abrir Google Maps';
     }
-  }
-}
-
-class ProductChip extends StatelessWidget {
-  const ProductChip({
-    super.key,
-    required this.product,
-  });
-
-  final String product;
-
-  @override
-  Widget build(BuildContext context) {
-    Color color = Colors.blue;
-    if (product == 'gasolina') {
-      color = Colors.blue;
-    } else if (product == 'diesel') {
-      color = Colors.red;
-    } else if (product == 'gnv') {
-      color = Colors.green;
-    }
-    return ChoiceChip(
-      label: Text(product),
-      onSelected: (selected) {},
-      selected: true,
-      pressElevation: 0,
-      selectedColor: color,
-      labelStyle: const TextStyle(color: Colors.white),
-      backgroundColor: Colors.grey,
-    );
   }
 }

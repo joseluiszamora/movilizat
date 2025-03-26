@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:movilizat/core/constants/app_colors.dart';
+import 'package:movilizat/core/constants/app_defaults.dart';
 
 import 'constants.dart';
 
@@ -18,6 +19,26 @@ class AppTheme {
         bodyLarge: TextStyle(color: kTextColor),
         bodyMedium: TextStyle(color: kTextColor),
         bodySmall: TextStyle(color: kTextColor),
+        titleLarge: TextStyle(
+            fontSize: AppDefaults.fontSizeTitleLarge,
+            color: AppColors.black,
+            fontWeight: FontWeight.w600),
+        titleMedium: TextStyle(
+            fontSize: AppDefaults.fontSizeTitleMedium,
+            color: AppColors.black,
+            fontWeight: FontWeight.w600),
+        titleSmall: TextStyle(
+            fontSize: AppDefaults.fontSizeTitleSmall,
+            color: AppColors.black,
+            fontWeight: FontWeight.w600),
+        labelMedium: TextStyle(
+          color: AppColors.black,
+          fontSize: AppDefaults.fontSizeLabelMedium,
+        ),
+        labelLarge: TextStyle(
+          color: AppColors.black,
+          fontSize: AppDefaults.fontSizeSubTitle,
+        ),
       ),
       inputDecorationTheme: const InputDecorationTheme(
         floatingLabelBehavior: FloatingLabelBehavior.always,

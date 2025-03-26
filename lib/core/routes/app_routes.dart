@@ -18,4 +18,7 @@ class AppRoutes {
 
   /* <---- HOME PAGE -----> */
   static const homePage = '/home_page';
+
+  /* <---- FUEL STATIONS -----> */
+  static const fuelStationPage = '/fuel_station_page';
 }
