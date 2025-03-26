@@ -15,6 +15,43 @@ class FuelPage extends StatelessWidget {
     return Column(
       children: [
         const Text('Estaciones de Servicio'),
+        Container(
+          margin: const EdgeInsets.only(bottom: 16.0),
+          padding: const EdgeInsets.fromLTRB(
+            16.0,
+            0,
+            16.0,
+            16.0,
+          ),
+          color: const Color(0xFF00BF6D),
+          child: Form(
+            child: TextFormField(
+              autofocus: true,
+              textInputAction: TextInputAction.search,
+              onChanged: (value) {
+                // search
+              },
+              decoration: InputDecoration(
+                fillColor: Colors.white,
+                prefixIcon: Icon(
+                  Icons.search,
+                  color: const Color(0xFF1D1D35).withOpacity(0.64),
+                ),
+                hintText: "Search",
+                hintStyle: TextStyle(
+                  color: const Color(0xFF1D1D35).withOpacity(0.64),
+                ),
+                filled: true,
+                contentPadding: const EdgeInsets.symmetric(
+                    horizontal: 16.0 * 1.5, vertical: 16.0),
+                border: const OutlineInputBorder(
+                  borderSide: BorderSide.none,
+                  borderRadius: BorderRadius.all(Radius.circular(50)),
+                ),
+              ),
+            ),
+          ),
+        ),
         Expanded(
           child: ListView.builder(
               itemCount: fuelStations.length,

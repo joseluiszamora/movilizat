@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:go_router/go_router.dart';
+import 'package:movilizat/core/constants/app_defaults.dart';
 import 'package:movilizat/core/data/models/fuel_station.dart';
 import 'package:movilizat/core/routes/app_routes.dart';
 import 'package:movilizat/views/fuel/components/image_station.dart';
 import 'package:movilizat/views/fuel/components/info_station.dart';
+import 'package:movilizat/views/fuel/components/reports_station.dart';
 import 'package:movilizat/views/fuel/components/stats_station.dart';
 import 'package:url_launcher/url_launcher_string.dart';
 
@@ -176,7 +178,14 @@ class MakeActions extends StatelessWidget {
               children: [
                 Expanded(
                   child: ElevatedButton(
-                    onPressed: () {},
+                    onPressed: () {
+                      showModalBottomSheet(
+                          context: context,
+                          shape: AppDefaults.shapeBorder,
+                          builder: (context) {
+                            return const ReportsStation();
+                          });
+                    },
                     style: ElevatedButton.styleFrom(
                       elevation: 0,
                       backgroundColor: const Color(0xFFFF7643),

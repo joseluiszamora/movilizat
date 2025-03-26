@@ -52,4 +52,9 @@ class AppDefaults {
   ];
 
   static Duration duration = const Duration(milliseconds: 300);
+
+  /// SHAPE BORDER
+  static ShapeBorder shapeBorder = RoundedRectangleBorder(
+    borderRadius: BorderRadius.circular(radius),
+  );
 }
