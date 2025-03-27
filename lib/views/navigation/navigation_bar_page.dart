@@ -18,7 +18,7 @@ class NavigationBarPage extends StatefulWidget {
 }
 
 class _NavigationBarPageState extends State<NavigationBarPage> {
-  int _pageSelected = 2;
+  int _pageSelected = 0;
 
   @override
   Widget build(BuildContext context) {

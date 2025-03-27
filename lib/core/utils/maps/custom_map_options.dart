@@ -8,7 +8,7 @@ class CustomMapOptions {
   MapOptions customMapOptions(LatLng initialCenter) {
     return MapOptions(
       initialCenter: initialCenter,
-      initialZoom: 10.0,
+      initialZoom: 12.0,
       minZoom: 3,
       maxZoom: 18,
       // Callback para eventos de mapa
