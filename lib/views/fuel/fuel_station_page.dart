@@ -21,7 +21,7 @@ class FuelStationPage extends StatelessWidget {
       direccion: "Avenida 6 de Marzo Nº 1962 - El Alto, La Paz",
       latitud: -16.5112,
       longitud: -68.1923,
-      productos: ["gasolina", "diesel", "gnv"],
+      productos: [],
       imagen:
           "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTVriUJlkvPVgX8lqYokR0lOn73Ijhx7DOmVA&s",
       isActive: false,

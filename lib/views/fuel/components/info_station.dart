@@ -29,15 +29,15 @@ class InfoStation extends StatelessWidget {
             maxLines: 3,
           ),
           const SizedBox(height: 10),
-          Center(
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                ...station.productos
-                    .map((producto) => ProductStationInfo(producto: producto)),
-              ],
-            ),
-          ),
+          // Center(
+          //   child: Row(
+          //     mainAxisAlignment: MainAxisAlignment.center,
+          //     children: [
+          //       ...station.productos
+          //           .map((producto) => ProductStationInfo(producto: producto)),
+          //     ],
+          //   ),
+          // ),
         ],
       ),
     );

@@ -1,3 +1,4 @@
+import 'package:intl/intl.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_map/flutter_map.dart';
 import 'package:latlong2/latlong.dart';
@@ -27,7 +28,9 @@ class _HomePageState extends State<HomePage> {
   Future<void> _fetchFuelStations() async {
     try {
       final supabase = Supabase.instance.client;
-      final response = await supabase.from('fuelstation').select();
+      // final response = await supabase.from('fuelstation').select();
+      final response =
+          await supabase.from('fuelstation').select('*, fuelproduct(*)');
 
       List<Marker> markersTmp = [];
 
@@ -55,38 +58,6 @@ class _HomePageState extends State<HomePage> {
     }
   }
 
-  Marker markerFromFuelStation(FuelStation station) => Marker(
-        width: 60.0,
-        height: 60.0,
-        point: LatLng(station.latitud, station.longitud),
-        child: GestureDetector(
-          onTap: () {
-            showDialog(
-              context: context,
-              builder: (context) => AlertDialog(
-                title: Text(station.nombre),
-                content: Text(station.direccion),
-                actions: [
-                  TextButton(
-                    onPressed: () => Navigator.of(context).pop(),
-                    child: const Text('Cerrar'),
-                  ),
-                ],
-              ),
-            );
-          },
-          child: Column(
-            children: [
-              Icon(
-                Icons.location_pin,
-                color: station.isActive ? Colors.green : Colors.red,
-                size: 40.0,
-              ),
-            ],
-          ),
-        ),
-      );
-
   @override
   Widget build(BuildContext context) {
     if (_showError) {
@@ -111,4 +82,84 @@ class _HomePageState extends State<HomePage> {
       ],
     );
   }
+
+  // Convertir el FuelStation a Marker con dialog
+  Marker markerFromFuelStation(FuelStation station) => Marker(
+        width: 60.0,
+        height: 60.0,
+        point: LatLng(station.latitud, station.longitud),
+        child: GestureDetector(
+          onTap: () {
+            showDialog(
+              context: context,
+              builder: (context) => AlertDialog(
+                title: Text(station.nombre),
+                content: SizedBox(
+                  width: double.maxFinite,
+                  height: 300,
+                  child: Column(
+                    children: [
+                      Text(station.direccion),
+                      const SizedBox(height: 10),
+                      ListView.builder(
+                        shrinkWrap: true,
+                        itemCount: station.productos.length,
+                        itemBuilder: (context, index) => Column(
+                          children: [
+                            Row(children: [
+                              Text(station.productos[index].nombre)
+                            ]),
+                            Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                              children: [
+                                Chip(
+                                  avatar: const Icon(Icons.time_to_leave),
+                                  label: Text(station
+                                      .productos[index].autosEnFila
+                                      .toString()),
+                                ),
+                                Chip(
+                                  avatar: const Icon(Icons.access_time_sharp),
+                                  label: Text(station
+                                      .productos[index].tiempoEspera
+                                      .toString()),
+                                ),
+                                Chip(
+                                  avatar: const Icon(Icons.local_gas_station),
+                                  label: Text(station
+                                      .productos[index].combustibleRestante
+                                      .toString()),
+                                )
+                              ],
+                            ),
+                            Row(children: [
+                              Text(
+                                  'Actualizado en: ${DateFormat('yyyy-MM-dd – kk:mm').format(station.productos[index].actualizadoEn)}')
+                            ]),
+                          ],
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+                actions: [
+                  TextButton(
+                    onPressed: () => Navigator.of(context).pop(),
+                    child: const Text('Cerrar'),
+                  ),
+                ],
+              ),
+            );
+          },
+          child: Column(
+            children: [
+              Icon(
+                Icons.location_pin,
+                color: station.isActive ? Colors.green : Colors.red,
+                size: 40.0,
+              ),
+            ],
+          ),
+        ),
+      );
 }

@@ -73,17 +73,17 @@ class _FuelPageState extends State<FuelPage> {
                                       fontWeight: FontWeight.bold),
                                 ),
                                 const SizedBox(height: 10),
-                                Center(
-                                  child: Row(
-                                    mainAxisAlignment:
-                                        MainAxisAlignment.spaceAround,
-                                    children: [
-                                      ...station.productos.map((producto) =>
-                                          ProductStationInfo(
-                                              producto: producto)),
-                                    ],
-                                  ),
-                                ),
+                                // Center(
+                                //   child: Row(
+                                //     mainAxisAlignment:
+                                //         MainAxisAlignment.spaceAround,
+                                //     children: [
+                                //       ...station.productos.map((producto) =>
+                                //           ProductStationInfo(
+                                //               producto: producto)),
+                                //     ],
+                                //   ),
+                                // ),
                                 const SizedBox(height: 10),
                                 Row(
                                   crossAxisAlignment: CrossAxisAlignment.start,

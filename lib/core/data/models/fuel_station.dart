@@ -1,4 +1,5 @@
 import 'package:equatable/equatable.dart';
+import 'package:movilizat/core/data/models/fuel_product.dart';
 
 class FuelStation extends Equatable {
   final int id;
@@ -6,7 +7,7 @@ class FuelStation extends Equatable {
   final String direccion;
   final double latitud;
   final double longitud;
-  final List<String> productos;
+  final List<FuelProduct> productos;
   final String imagen;
   final bool isActive;
 
@@ -28,8 +29,10 @@ class FuelStation extends Equatable {
       direccion: json['address'],
       latitud: json['latitude'],
       longitud: json['longitude'],
-      // productos: List<String>.from(json['productos']),
-      productos: const [],
+      productos: (json['fuelproduct'] as List?)
+              ?.map((productJson) => FuelProduct.fromJson(productJson))
+              .toList() ??
+          [],
       imagen: json['image'],
       isActive: json['active'],
     );
@@ -46,7 +49,7 @@ class FuelStation extends Equatable {
         direccion: "Avenida Cívica N° 78 - Ciudad El Alto, La Paz",
         latitud: -16.5033,
         longitud: -68.1625,
-        productos: ["gasolina", "diesel", "gnv"],
+        productos: [],
         imagen:
             "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTVriUJlkvPVgX8lqYokR0lOn73Ijhx7DOmVA&s",
         isActive: false),
