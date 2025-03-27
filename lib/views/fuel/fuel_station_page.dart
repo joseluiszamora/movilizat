@@ -24,6 +24,7 @@ class FuelStationPage extends StatelessWidget {
       productos: ["gasolina", "diesel", "gnv"],
       imagen:
           "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTVriUJlkvPVgX8lqYokR0lOn73Ijhx7DOmVA&s",
+      isActive: false,
     );
     return Scaffold(
       extendBody: true,

@@ -31,41 +31,13 @@ class _HomePageState extends State<HomePage> {
 
       List<Marker> markersTmp = [];
 
+      // Convertir response a FuelStations
       fuelStations =
           response.map((station) => FuelStation.fromJson(station)).toList();
 
-      for (var element in fuelStations) {
-        markersTmp.add(Marker(
-          width: 60.0,
-          height: 60.0,
-          point: LatLng(element.latitud, element.longitud),
-          child: GestureDetector(
-            onTap: () {
-              showDialog(
-                context: context,
-                builder: (context) => AlertDialog(
-                  title: Text(element.nombre),
-                  content: Text(element.direccion),
-                  actions: [
-                    TextButton(
-                      onPressed: () => Navigator.of(context).pop(),
-                      child: const Text('Cerrar'),
-                    ),
-                  ],
-                ),
-              );
-            },
-            child: const Column(
-              children: [
-                Icon(
-                  Icons.location_pin,
-                  color: Colors.red,
-                  size: 40.0,
-                ),
-              ],
-            ),
-          ),
-        ));
+      // Convertir las FuelStations a Markers
+      for (var station in fuelStations) {
+        markersTmp.add(markerFromFuelStation(station));
       }
 
       setState(() {
@@ -82,6 +54,38 @@ class _HomePageState extends State<HomePage> {
       });
     }
   }
+
+  Marker markerFromFuelStation(FuelStation station) => Marker(
+        width: 60.0,
+        height: 60.0,
+        point: LatLng(station.latitud, station.longitud),
+        child: GestureDetector(
+          onTap: () {
+            showDialog(
+              context: context,
+              builder: (context) => AlertDialog(
+                title: Text(station.nombre),
+                content: Text(station.direccion),
+                actions: [
+                  TextButton(
+                    onPressed: () => Navigator.of(context).pop(),
+                    child: const Text('Cerrar'),
+                  ),
+                ],
+              ),
+            );
+          },
+          child: Column(
+            children: [
+              Icon(
+                Icons.location_pin,
+                color: station.isActive ? Colors.green : Colors.red,
+                size: 40.0,
+              ),
+            ],
+          ),
+        ),
+      );
 
   @override
   Widget build(BuildContext context) {
