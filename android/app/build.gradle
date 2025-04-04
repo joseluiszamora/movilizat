@@ -1,50 +1,24 @@
-plugins {
-    id "com.android.application"
-    id "kotlin-android"
-    // The Flutter Gradle Plugin must be applied after the Android and Kotlin Gradle plugins.
-    id "dev.flutter.flutter-gradle-plugin"
-    id 'com.google.gms.google-services'
-}
-
-dependencies {
-    implementation platform('com.google.firebase:firebase-bom:33.11.0')
-    implementation 'com.google.firebase:firebase-analytics'
-}
-
 android {
-    namespace = "bo.monval.movilizat"
-    compileSdk = flutter.compileSdkVersion
-    ndkVersion = flutter.ndkVersion
+    namespace "bo.monval.movilizat"
+    compileSdk 34  // ¡No usar compileSdkVersion! Formato nuevo requerido
+
+    // Configuración NDK obligatoria
+    ndkVersion "25.2.9519653"  // Versión fija para evitar nulls
+
+    defaultConfig {
+        applicationId "bo.monval.movilizat"
+        minSdk 21
+        targetSdk 34
+        versionCode flutterVersionCode.toInteger()
+        versionName flutterVersionName
+    }
 
     compileOptions {
-        sourceCompatibility = JavaVersion.VERSION_1_8
-        targetCompatibility = JavaVersion.VERSION_1_8
+        sourceCompatibility JavaVersion.VERSION_17
+        targetCompatibility JavaVersion.VERSION_17
     }
 
     kotlinOptions {
-        jvmTarget = JavaVersion.VERSION_1_8
+        jvmTarget = '17'
     }
-
-    defaultConfig {
-        // TODO: Specify your own unique Application ID (https://developer.android.com/studio/build/application-id.html).
-        applicationId = "bo.monval.movilizat"
-        // You can update the following values to match your application needs.
-        // For more information, see: https://flutter.dev/to/review-gradle-config.
-        minSdk = 23
-        targetSdk = 33
-        versionCode = flutter.versionCode
-        versionName = flutter.versionName
-    }
-
-    buildTypes {
-        release {
-            // TODO: Add your own signing config for the release build.
-            // Signing with the debug keys for now, so `flutter run --release` works.
-            signingConfig = signingConfigs.debug
-        }
-    }
-}
-
-flutter {
-    source = "../.."
 }
